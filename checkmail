@@ -5,6 +5,8 @@ set -euo pipefail
 MAIL_D="/var/mail/${LOGNAME}"
 MAIL_COMMAND="${1:-}"
 
+export PAGER=${CHECKMAIL_PAGER:-${PAGER:-more}}
+
 find_mailboxes_with_new_mail() {
 	find "${MAIL_D}" -type d -not -empty \( -name 'new' -o -name 'cur' \) -print0 |
 		xargs -0 -I{} -- find {} -type f -not -regex '.*,D?R?S[a-z]*' -printf '%h\n' |
