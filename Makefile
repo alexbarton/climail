@@ -15,6 +15,7 @@ distclean: clean
 maintainer-clean: distclean
 
 check: all
+	./checkmail --help | grep -Fq Usage:
 	shellcheck checkmail
 	mdl *.md
 
