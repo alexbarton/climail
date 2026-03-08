@@ -37,9 +37,9 @@ fi
 
 if [[ -z "${mailbox_command[0]:-}" ]]; then
 	if command -v s-nail >/dev/null 2>&1; then
-		mailbox_command=("s-nail")
+		mailbox_command=("s-nail" "-f")
 	else
-		mailbox_command=("mail")
+		mailbox_command=("mail" "-f")
 	fi
 fi
 if ! command -v "${mailbox_command[0]}" >/dev/null 2>&1; then
@@ -66,7 +66,7 @@ for mailbox in "${mailboxes[@]}"; do
 	printf '\nOpening "\e[1m%s\e[0m" with %s:\n' \
 		"$(get_mailbox_name "$mailbox")" "${mailbox_command[0]}"
 	invocations=$((invocations + 1))
-	"${mailbox_command[@]}" -f "${mailbox}" && exit_code=0 || exit_code=$?
+	"${mailbox_command[@]}" "${mailbox}" && exit_code=0 || exit_code=$?
 	[[ $exit_code -eq 0 ]] || break
 done
 echo
