@@ -11,7 +11,7 @@ usage_exit() {
 	exit "${1:-0}"
 }
 
-find_mailboxes_with_new_mail() {
+find_mailboxes_with_unread_mail() {
 	find "${MAIL_D}" -type d -not -empty \( -name 'new' -o -name 'cur' \) -print0 |
 		xargs -0 -I{} -- find {} -type f -not -regex '.*,D?R?S[a-z]*' -printf '%h\n' |
 		sed -E -e 's:^'"${MAIL_D}"'/:+:' -e 's:/?(cur|new)$::' |
@@ -47,13 +47,13 @@ if ! command -v "${mailbox_command[0]}" >/dev/null 2>&1; then
 	exit 1
 fi
 
-echo "Looking for new mail in ${MAIL_D} ..."
+echo "Looking for unread mail in ${MAIL_D} ..."
 
 declare -i invocations=0
-mapfile -t mailboxes < <(find_mailboxes_with_new_mail)
+mapfile -t mailboxes < <(find_mailboxes_with_unread_mail)
 
 if [[ ${#mailboxes[@]} -eq 0 ]]; then
-	echo "No new mail."
+	echo "No unread mail."
 	exit 0
 fi
 
