@@ -71,9 +71,14 @@ for mailbox in "${mailboxes[@]}"; do
 done
 echo
 
-if [[ $invocations -eq 1 ]]; then
-	echo "One mailbox with new mail shown."
+if [[ ${#mailboxes[@]} -ne $invocations ]]; then
+	total_info=" (out of ${#mailboxes[@]})"
 else
-	echo "$invocations mailboxes with new mail shown."
+	total_info=""
+fi
+if [[ $invocations -eq 1 ]]; then
+	echo "One mailbox${total_info} with new mail shown."
+else
+	echo "$invocations mailboxes${total_info} with new mail shown."
 fi
 exit $exit_code
