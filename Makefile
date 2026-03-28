@@ -1,5 +1,5 @@
 #
-# Makefile
+# climail: Makefile
 #
 
 DESTDIR ?=

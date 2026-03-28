@@ -4,7 +4,7 @@ set -euo pipefail
 
 MAIL_D="/var/mail/${LOGNAME}"
 
-export PAGER=${CHECKMAIL_PAGER:-${PAGER:-more}}
+export PAGER=${CLIMAIL_PAGER:-${PAGER:-more}}
 
 usage_exit() {
 	echo "Usage: $0 [<mailbox_command> [<arguments...>]]"
