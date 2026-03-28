@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-MAIL_D="/var/mail/${LOGNAME}"
+export MAILDIR="${MAILDIR:-/var/mail/${LOGNAME}}"
 
 export PAGER=${CLIMAIL_PAGER:-${PAGER:-more}}
 
@@ -12,9 +12,9 @@ usage_exit() {
 }
 
 find_mailboxes_with_unread_mail() {
-	find "${MAIL_D}" -type d -not -empty \( -name 'new' -o -name 'cur' \) -print0 |
+	find "${MAILDIR}" -type d -not -empty \( -name 'new' -o -name 'cur' \) -print0 |
 		xargs -0 -I{} -- find {} -type f -not -regex '.*,D?R?S[a-z]*' -printf '%h\n' |
-		sed -E -e 's:^'"${MAIL_D}"'/:+:' -e 's:/?(cur|new)$::' |
+		sed -E -e 's:^'"${MAILDIR}"'/:+:' -e 's:/?(cur|new)$::' |
 		sort -u
 }
 
@@ -30,8 +30,8 @@ get_mailbox_name() {
 
 mailbox_command=("$@")
 
-if [[ ! -d "${MAIL_D}/cur" ]]; then
-	echo "Maildir \"${MAIL_D}\" not found!" >&2
+if [[ ! -d "${MAILDIR}/cur" ]]; then
+	echo "Maildir \"${MAILDIR}\" not found!" >&2
 	exit 1
 fi
 
@@ -47,7 +47,7 @@ if ! command -v "${mailbox_command[0]}" >/dev/null 2>&1; then
 	exit 1
 fi
 
-echo "Looking for unread mail in ${MAIL_D} ..."
+echo "Looking for unread mail in ${MAILDIR} ..."
 
 declare -i invocations=0
 mapfile -t mailboxes < <(find_mailboxes_with_unread_mail)
