@@ -27,6 +27,18 @@ get_mailbox_name() {
 mailbox="${1:-+}"
 [[ $# -ge 1 ]] && shift
 
+# Translate folder name into proper mailbox name:
+case "${mailbox}" in
+"INBOX"|"inbox")
+	mailbox="+" ;;
+.*)
+	# Leading "+" missing!?
+	mailbox="+${mailbox}" ;;
+[A-Za-z0-9]*)
+	# Leading "+." missing!?
+	mailbox="+.${mailbox}" ;;
+esac
+
 mailbox_command=("$@")
 
 if [[ -z "${mailbox_command[0]:-}" ]]; then

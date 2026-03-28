@@ -25,6 +25,14 @@ email client.
 
 When no mailbox is specified, `+` (the "INBOX") is used by default.
 
+If the mailbox name does start with a dot ("."), the missing "+" is prepended
+automatically. When both plus and dot ("+.") are missing on a mailbox starting
+with an alphanumeric character, "+." is prepended automatically. And the plain
+names "INBOX" and "inbox" are always translated into "+".
+
+This way you can use *friendly* folder names as shown when starting `openmail`
+and used in the selector of the `readmail` command, for example.
+
 ### Usage: openmail
 
 `openmail [<mailbox> [<mailbox_command> [<arguments...>]]]`
