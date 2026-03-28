@@ -34,6 +34,6 @@ check: all
 	mdl *.md
 
 install:
-	install -m 0755 $(BIN_SCRIPTS) "$(BIN_DIR)"
+	install -m 0755 -v $(BIN_SCRIPTS) "$(BIN_DIR)"
 
 .PHONY: all clean distclean maintainer-clean check install
