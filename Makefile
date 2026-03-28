@@ -10,6 +10,7 @@ BIN_SCRIPTS = \
 	bin/checkmail \
 	bin/lister \
 	bin/openmail \
+	bin/readmail \
 
 all:
 

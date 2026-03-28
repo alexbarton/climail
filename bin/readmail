@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# climail/readmail:
+# Interactively select a mailbox to read mail from.
+#
+
+set -euo pipefail
+
+while
+	folder=$("$(dirname "$0")"/lister |
+		sed -e 's/^+.//' -e 's/^+$/INBOX/' |
+		fzf
+	)
+do
+	if [[ "${folder}" = "INBOX" ]]; then
+		mailbox="+"
+	else
+		mailbox="+.${folder}"
+	fi
+	"$(dirname "$0")"/openmail "${mailbox}" || exit $?
+	echo
+done
