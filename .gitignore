@@ -1,0 +1,7 @@
+#
+# climail: VCS ignore patterns
+#
+
+*.swp
+*~
+.DS_Store
