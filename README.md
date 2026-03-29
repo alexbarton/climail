@@ -53,7 +53,10 @@ Once `fzf` returns an non-zero exit code, for example when exited with CTRL+D,
 
 ### Usage: readmail
 
-`readmail`
+`readmail [<search_pattern ...>]`
+
+When a search pattern is given, `readmail` does not enter its loop, but exits
+regardless of the exit code of the `openmail` command after one invocation.
 
 ## lister: List all mailboxes in a Maildir tree
 

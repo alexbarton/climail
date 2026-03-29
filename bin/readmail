@@ -7,16 +7,20 @@
 set -euo pipefail
 
 usage_exit() {
-	echo "Usage: $0"
+	echo "Usage: $0 [<search_pattern ...>]"
 	exit "${1:-0}"
 }
 
 while [[ $# -gt 0 ]]; do
 	case "$1" in
-	"--help")
+	--)
+		shift; break ;;
+	--help)
 		usage_exit 0 ;;
-	*)
+	-*)
 		usage_exit 1 >&2 ;;
+	*)
+		break
 	esac
 done
 
@@ -31,6 +35,12 @@ select_command=(
 	"--tmux=center,50,80%"
 )
 
+[[ $# -ge 1 ]] && select_command+=(
+	"--select-1"
+	"-q"
+	"${@}"
+)
+
 while
 	folder=$("$(dirname "$0")"/lister |
 		sed -e 's/^+.//' -e 's/^+$/INBOX/' |
@@ -43,5 +53,6 @@ do
 		mailbox="+.${folder}"
 	fi
 	"$(dirname "$0")"/openmail "${mailbox}" || exit $?
+	[[ $# -ge 1 ]] && exit 0
 	echo
 done
