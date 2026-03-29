@@ -1,0 +1,72 @@
+# German translation for climail.
+# Copyright (C) 2026 Alexander Barton.
+# This file is distributed under the same license as the climail package.
+#
+# Alexander Barton <alex+climail@barton.de>, 2026
+msgid ""
+msgstr ""
+"Project-Id-Version: climail 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-30 17:12+0200\n"
+"PO-Revision-Date: 2026-03-30 00:34+0200\n"
+"Last-Translator: Alexander Barton <alex+climail@barton.de>\n"
+"Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: bin/checkmail:22 bin/lister:22 bin/openmail:23 bin/readmail:20
+msgid "Usage"
+msgstr "Aufruf"
+
+#: bin/checkmail:60 bin/lister:42
+#, sh-format
+msgid "Error: \"${MAILDIR}\" not found!"
+msgstr "Fehler: \"${MAILDIR}\" nicht gefunden!"
+
+#: bin/checkmail:64
+#, sh-format
+msgid "Looking for unread mail in ${MAILDIR} ..."
+msgstr "Suche nach ungelesener Mail in ${MAILDIR} ..."
+
+#: bin/checkmail:70
+msgid "No unread mail."
+msgstr "Keine ungelesene Mail gefunden."
+
+#: bin/checkmail:92
+#, sh-format
+msgid " (out of ${count})"
+msgstr " (von ${count})"
+
+#: bin/checkmail:98
+#, sh-format
+msgid "Opened one mailbox${total_info} with unread mail."
+msgid_plural "Opened ${invocations} mailboxes${total_info} with unread mail."
+msgstr[0] "Eine Mailbox mit ungelesener Mail geöffnet${total_info}."
+msgstr[1] "${invocations} Mailboxen mit ungelesener Mail geöffnet${total_info}."
+
+#: bin/lister:46
+#, sh-format
+msgid "Error: \"${MAILDIR}\" is not readable!"
+msgstr ""
+
+#: bin/lister:50
+#, sh-format
+msgid "Error: \"${MAILDIR}\" seems not to be a Maildir!"
+msgstr "Fehler: \"${MAILDIR}\" scheint kein Maildir zu sein!"
+
+#: bin/openmail:74
+#, sh-format
+msgid "Command not found: \"${cmd}\"!"
+msgstr "Befehl nicht gefunden: \"${cmd}\"!"
+
+#: bin/openmail:82
+#, sh-format
+msgid "Opening \"${mailbox_name}\" with ${cmd}:"
+msgstr "Öffne \"${mailbox_name}\" mit ${cmd}:"
+
+#: bin/readmail:39
+msgid "Select mail folder"
+msgstr "Ordner auswählen"

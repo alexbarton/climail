@@ -6,8 +6,18 @@
 
 set -euo pipefail
 
+# shellcheck disable=SC1091
+. gettext.sh
+export TEXTDOMAIN=climail
+for locale_dir in ./po /usr/local/share/locale; do
+	if [[ -r "${locale_dir}/de/LC_MESSAGES/climail.mo" ]]; then
+		export TEXTDOMAINDIR=$locale_dir
+		break
+	fi
+done
+
 usage_exit() {
-	echo "Usage: $0 [<search_pattern ...>]"
+	echo "$(gettext 'Usage'): $0 [<search_pattern ...>]"
 	exit "${1:-0}"
 }
 
@@ -26,7 +36,7 @@ done
 
 select_command=(
 	fzf
-	"--border-label= Select mail folder "
+	"--border-label= $(gettext 'Select mail folder') "
 	"--height=~100%"
 	"--highlight-line"
 	"--info=right"

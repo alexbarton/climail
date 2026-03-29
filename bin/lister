@@ -6,10 +6,20 @@
 
 set -euo pipefail
 
+# shellcheck disable=SC1091
+. gettext.sh
+export TEXTDOMAIN=climail
+for locale_dir in ./po /usr/local/share/locale; do
+	if [[ -r "${locale_dir}/de/LC_MESSAGES/climail.mo" ]]; then
+		export TEXTDOMAINDIR=$locale_dir
+		break
+	fi
+done
+
 export MAILDIR="${1:-${MAILDIR:-/var/mail/${LOGNAME}}}"
 
 usage_exit() {
-	echo "Usage: $0 [<Maildir_directory>]"
+	echo "$(gettext 'Usage'): $0 [<Maildir_directory>]"
 	exit "${1:-0}"
 }
 
@@ -29,15 +39,15 @@ done
 [[ $# -le 1 ]] || usage_exit 1 >&2
 
 if [[ ! -e "$MAILDIR" ]]; then
-	echo "Error: \"$MAILDIR\" not found!" >&2
+	eval_gettext "Error: \"\${MAILDIR}\" not found!" >&2; echo >&2
 	exit 1
 fi
 if [[ ! -r "$MAILDIR" ]]; then
-	echo "Error: \"$MAILDIR\" is not readable!" >&2
+	eval_gettext "Error: \"\${MAILDIR}\" is not readable!" >&2; echo >&2
 	exit 1
 fi
 if [[ ! -d "$MAILDIR/cur" || ! -d "$MAILDIR/new" ]]; then
-	echo "Error: \"$MAILDIR\" seems not to be a Maildir!" >&2
+	eval_gettext "Error: \"\${MAILDIR}\" seems not to be a Maildir!" >&2; echo >&2
 	exit 1
 fi
 cd "$MAILDIR"

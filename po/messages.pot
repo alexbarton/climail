@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-30 17:12+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: bin/checkmail:22 bin/lister:22 bin/openmail:23 bin/readmail:20
+msgid "Usage"
+msgstr ""
+
+#: bin/checkmail:60 bin/lister:42
+#, sh-format
+msgid "Error: \"${MAILDIR}\" not found!"
+msgstr ""
+
+#: bin/checkmail:64
+#, sh-format
+msgid "Looking for unread mail in ${MAILDIR} ..."
+msgstr ""
+
+#: bin/checkmail:70
+msgid "No unread mail."
+msgstr ""
+
+#: bin/checkmail:92
+#, sh-format
+msgid " (out of ${count})"
+msgstr ""
+
+#: bin/checkmail:98
+#, sh-format
+msgid "Opened one mailbox${total_info} with unread mail."
+msgid_plural "Opened ${invocations} mailboxes${total_info} with unread mail."
+msgstr[0] ""
+msgstr[1] ""
+
+#: bin/lister:46
+#, sh-format
+msgid "Error: \"${MAILDIR}\" is not readable!"
+msgstr ""
+
+#: bin/lister:50
+#, sh-format
+msgid "Error: \"${MAILDIR}\" seems not to be a Maildir!"
+msgstr ""
+
+#: bin/openmail:74
+#, sh-format
+msgid "Command not found: \"${cmd}\"!"
+msgstr ""
+
+#: bin/openmail:82
+#, sh-format
+msgid "Opening \"${mailbox_name}\" with ${cmd}:"
+msgstr ""
+
+#: bin/readmail:39
+msgid "Select mail folder"
+msgstr ""

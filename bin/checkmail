@@ -6,11 +6,22 @@
 
 set -euo pipefail
 
+# shellcheck disable=SC1091
+. gettext.sh
+export TEXTDOMAIN=climail
+for locale_dir in ./po /usr/local/share/locale; do
+	if [[ -r "${locale_dir}/de/LC_MESSAGES/climail.mo" ]]; then
+		export TEXTDOMAINDIR=$locale_dir
+		break
+	fi
+done
+
 export MAILDIR="${MAILDIR:-/var/mail/${LOGNAME}}"
 
 usage_exit() {
-	echo "Usage: $0 [<mailbox_command> [<arguments...>]]"
-	echo "       $0 {-l|--list-only}"
+	echo "$(gettext 'Usage'):"
+	echo "  $0 [<mailbox_command> [<arguments...>]]"
+	echo "  $0 {-l|--list-only}"
 	exit "${1:-0}"
 }
 
@@ -46,17 +57,17 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ ! -d "${MAILDIR}/cur" ]]; then
-	echo "Maildir \"${MAILDIR}\" not found!" >&2
+	eval_gettext "Error: \"\${MAILDIR}\" not found!" >&2; echo >&2
 	exit 1
 fi
 
-echo "Looking for unread mail in ${MAILDIR} ..."
+eval_gettext "Looking for unread mail in \${MAILDIR} ..."; echo
 
 declare -i invocations=0
 mapfile -t mailboxes < <(find_mailboxes_with_unread_mail)
 
 if [[ ${#mailboxes[@]} -eq 0 ]]; then
-	echo "No unread mail."
+	gettext "No unread mail."; echo
 	exit 0
 fi
 
@@ -76,14 +87,16 @@ done
 echo
 
 if [[ ${#mailboxes[@]} -ne $invocations ]]; then
-	total_info=" (out of ${#mailboxes[@]})"
+	# shellcheck disable=SC2034
+	count=${#mailboxes[@]}
+	total_info=$(eval_gettext " (out of \${count})")
 else
+	# shellcheck disable=SC2034
 	total_info=""
 fi
-if [[ $invocations -eq 1 ]]; then
-	mailbox_info="one mailbox"
-else
-	mailbox_info="$invocations mailboxes"
-fi
-echo "Opened ${mailbox_info}${total_info} with unread mail."
+eval_ngettext \
+	"Opened one mailbox\${total_info} with unread mail." \
+	"Opened \${invocations} mailboxes\${total_info} with unread mail." \
+	$invocations; echo
+
 exit $exit_code
