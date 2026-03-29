@@ -45,6 +45,12 @@ Environment:
 
 ## readmail: Interactively select a mailbox to read mail from
 
+The `readmail` command calls `lister` and `fzf` in an "endless" loop to
+interactively select a mail folder and call `openmail` on it.
+
+Once `fzf` returns an non-zero exit code, for example when exited with CTRL+D,
+`readmail` ends the loop and exits.
+
 ### Usage: readmail
 
 `readmail`
