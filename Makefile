@@ -4,7 +4,7 @@
 
 DESTDIR ?=
 PREFIX ?= /usr/local
-BIN_DIR ?= $(PREFIX)/bin
+BINDIR ?= $(PREFIX)/bin
 LOCALEDIR ?= $(PREFIX)/share/locale
 
 BIN_SCRIPTS = \
@@ -51,8 +51,8 @@ check: all
 	mdl *.md
 
 install: all
-	install -d -m 0755 -v "$(DESTDIR)$(BIN_DIR)"
-	install -m 0755 -v $(BIN_SCRIPTS) "$(DESTDIR)$(BIN_DIR)"
+	install -d -m 0755 -v "$(DESTDIR)$(BINDIR)"
+	install -m 0755 -v $(BIN_SCRIPTS) "$(DESTDIR)$(BINDIR)"
 	@for lang in $(LANGS); do \
 	  install -d -m 0755 -v "$(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES"; \
 	  install -m 0644 -v po/$$lang/LC_MESSAGES/climail.mo "$(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES/climail.mo"; \
