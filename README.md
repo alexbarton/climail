@@ -1,5 +1,15 @@
 # climail: Suite of commands for handling Maildir email on the command line
 
+The *climail* package provides some commands to make it easier to handle
+internet email in "Maildir" format on the command line:
+
+- `checkmail`: Check Maildir recursively for new email.
+- `openmail`: Setup and call an email client for a Maildir folder.
+- `readmail`: Interactively select a mailbox to read mail from.
+- `lister`: List all mailboxes in a Maildir tree.
+
+Homepage: <https://github.com/alexbarton/climail>
+
 ## Prerequisites
 
 1. Your local email setup must use the *"Maildir" layout*. Either in its
