@@ -53,12 +53,17 @@ if [[ -z "${mailbox_command[0]:-}" ]]; then
 	fi
 fi
 
+# Update mailbox_command[0] with the fully qualified command, including its
+# path, because next we will change the working directory to the temp directory
+# to make sure that the mailbox command has a readable CWD even when called
+# from a non-readable working directory (for example, when this script is
+# called via sudo(8)):
 cmd=${mailbox_command[0]}
-if ! command -v "${cmd}" >/dev/null 2>&1; then
+if ! mailbox_command[0]=$(command -v "${cmd}" 2>/dev/null); then
 	eval_gettext "Command not found: \"\${cmd}\"!"; echo
 	exit 1
 fi
-
+cd "${TMPDIR:-/tmp}"
 
 # shellcheck disable=SC2034
 mailbox_name="\e[1m$(get_mailbox_name "$mailbox")\e[0m"

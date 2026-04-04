@@ -14,10 +14,15 @@ usage_exit() {
 }
 
 find_mailboxes_with_unread_mail() {
-	find "${MAILDIR}" -type d -not -empty \( -name 'new' -o -name 'cur' \) -print0 |
-		xargs -0 -I{} -- find {} -type f -not -regex '.*,D?R?S[a-z]*' -printf '%h\n' |
-		sed -E -e 's:^'"${MAILDIR}"'/:+:' -e 's:/?(cur|new)$::' |
-		sort -u
+	(
+		# Make sure find(1) has a readable CWD, even when this script
+		# was called via sudo(8) or so.
+		cd "${TMPDIR:-/tmp}"
+		find "${MAILDIR}" -type d -not -empty \( -name 'new' -o -name 'cur' \) -print0 |
+			xargs -0 -I{} -- find {} -type f -not -regex '.*,D?R?S[a-z]*' -printf '%h\n' |
+			sed -E -e 's:^'"${MAILDIR}"'/:+:' -e 's:/?(cur|new)$::' |
+			sort -u
+	)
 }
 
 SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
