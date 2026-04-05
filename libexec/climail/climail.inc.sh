@@ -42,7 +42,7 @@ validate_maildir_or_abort() {
 	fi
 }
 
-export LISTER=${LISTER:-"$(dirname "$0")"/lister}
+export LISTER=${LISTER:-"${SCRIPT_DIR:-}"/lister}
 export MAILDIR="${MAILDIR:-/var/mail/${LOGNAME}}"
 export PAGER=${CLIMAIL_PAGER:-${PAGER:-more}}
 

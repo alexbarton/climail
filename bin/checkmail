@@ -68,7 +68,7 @@ declare -i exit_code=0
 for mailbox in "${mailboxes[@]}"; do
 	echo
 	invocations=$((invocations + 1))
-	"$(dirname "$0")"/openmail "${mailbox}" "$@" && exit_code=0 || exit_code=$?
+	"${SCRIPT_DIR}"/openmail "${mailbox}" "$@" && exit_code=0 || exit_code=$?
 	[[ $exit_code -eq 0 ]] || break
 done
 echo
