@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# climail/climail.int.sh
+# climail/climail.inc.sh
 # Common initialization and bash functions for all climail tools.
 #
 
