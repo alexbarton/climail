@@ -31,6 +31,8 @@ Homepage: <https://github.com/alexbarton/climail>
 
 ## Prerequisites
 
+### Runtime dependencies
+
 1. Your local email setup must use the *"Maildir" layout*. Either in its
    default location `/var/mail/${LOGNAME}` or specified by the `MAILDIR`
    environment variable.
@@ -56,6 +58,20 @@ Homepage: <https://github.com/alexbarton/climail>
    `Maildir` folder(s).
 
 1. The `readmail` command depends on `fzf`, the *command-line fuzzy finder*.
+
+### Tools required or used during building
+
+Required tools:
+
+1. *Pandoc* (`pandoc`) is used to generate all manual pages from their
+   respective Markdown sources.
+1. *GNU gettext* (`xgettext`, `msgfmt`, `msgmerge`) is required to build the
+   message catalog and language files.
+
+Tools used for the `make check` target:
+
+1. Markdownlint (`mdl`)
+1. ShellCheck (`shellcheck`)
 
 ## Installation
 
