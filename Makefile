@@ -74,18 +74,18 @@ check: all
 	grep -Fq 'keine Schleife begonnen' man/de/man1/readmail.1
 
 install: all
-	install -d -m 0755 -v "$(DESTDIR)$(BINDIR)"
-	install -m 0755 -v $(BIN_SCRIPTS) "$(DESTDIR)$(BINDIR)"
-	install -d -m 0755 -v "$(DESTDIR)$(LIBEXECDIR)/climail"
-	install -m 0644 -v $(LIBEXEC_FILES) "$(DESTDIR)$(LIBEXECDIR)/climail/"
+	install -d -m 0755 "$(DESTDIR)$(BINDIR)"
+	install -m 0755 $(BIN_SCRIPTS) "$(DESTDIR)$(BINDIR)"
+	install -d -m 0755 "$(DESTDIR)$(LIBEXECDIR)/climail"
+	install -m 0644 $(LIBEXEC_FILES) "$(DESTDIR)$(LIBEXECDIR)/climail/"
 	@for lang in $(LANGS); do \
-	  install -d -m 0755 -v "$(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES"; \
-	  install -m 0644 -v po/$$lang/LC_MESSAGES/climail.mo "$(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES/climail.mo"; \
+	  install -d -m 0755 "$(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES"; \
+	  install -m 0644 po/$$lang/LC_MESSAGES/climail.mo "$(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES/climail.mo"; \
 	done
-	install -d -m 0755 -v "$(DESTDIR)$(MANDIR)/man1"
-	install -d -m 0755 -v "$(DESTDIR)$(MANDIR)/de/man1"
+	install -d -m 0755 "$(DESTDIR)$(MANDIR)/man1"
+	install -d -m 0755 "$(DESTDIR)$(MANDIR)/de/man1"
 	@for manpage in $(MANPAGES); do \
-	  install -m 0644 -v $$manpage "$(DESTDIR)$(MANDIR)/$${manpage#man/}"; \
+	  install -m 0644 $$manpage "$(DESTDIR)$(MANDIR)/$${manpage#man/}"; \
 	done
 
 # Regenerate messages.pot from all scripts
