@@ -19,8 +19,9 @@ checkmail - Maildir rekursiv auf neue E‑Mails prüfen
 # BESCHREIBUNG
 
 **checkmail** durchsucht das Maildir des aktuellen Benutzers rekursiv nach neuen
-E‑Mails und öffnet alle gefundenen Ordner mit **openmail(1)** bzw. dem
-*mailbox_command*, welches auf der Kommandozeile angegeben wurde.
+E‑Mails und öffnet alle gefundenen Ordner mit **openmail(1)**, wobei der Befehl
+*mailbox_command* und seine Parameter *arguments* übergeben werden, wenn diese
+auf der Kommandozeile angegeben wurden.
 
 # OPTIONEN
 

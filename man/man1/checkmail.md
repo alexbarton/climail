@@ -19,8 +19,8 @@ checkmail - check Maildir recursively for new email
 # DESCRIPTION
 
 **checkmail** checks the Maildir of the current user recursively for new email,
-and opens all folders found with **openmail(1)** or the *mailbox_command*
-specified on the command line.
+and opens all folders found with **openmail(1)**, passing the *mailbox_command*
+and its *arguments* when specified on the command line.
 
 # OPTIONS
 
