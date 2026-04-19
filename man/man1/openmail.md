@@ -54,6 +54,11 @@ and used in the selector of the **readmail**(1) command, for example.
 **MAILDIR**
 : Overrides the default Maildir path (**/var/log/${LOGNAME}**).
 
+**VISUAL**
+: Often used by email clients when running a "visual" tool to display an email
+  message. If not set, **openmail** tries to set it to a sensible value: The
+  commands **bat**(1), **batcat**(1) and **less**(1) are tried, in this order.
+
 # EXIT STATUS
 
 **0**

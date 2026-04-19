@@ -53,3 +53,14 @@ if [[ "${EDITOR:-}" =~ (^|/)n?vim && ! "${EDITOR}" =~ \-c ]]; then
 	# so far, let's set the file type!
 	export EDITOR="${EDITOR} -c 'set filetype=mail'"
 fi
+
+if [[ -z "${VISUAL:-}" ]]; then
+	# No "visual" tool is set. Try to select a good one!
+	if command -v bat >/dev/null 2>&1; then
+		export VISUAL="bat --language=eml"
+	elif command -v batcat >/dev/null 2>&1; then
+		export VISUAL="batcat --language=eml"
+	elif command -v less >/dev/null 2>&1; then
+		export VISUAL="less"
+	fi
+fi

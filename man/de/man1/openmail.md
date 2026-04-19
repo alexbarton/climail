@@ -56,6 +56,12 @@ Beispiel auch beim Start von **openmail** angezeigt und in der Auswahlliste von
 **MAILDIR**
 : Überschreibt den Standardpfad zum Maildir (**/var/log/${LOGNAME}**).
 
+**VISUAL**
+: Oft von E-Mail-Programmen genutzt, um ein Anzeige-Programm für eine
+  E-Mail-Nachricht aufzurufen. Wenn nicht gesetzt, versucht **openmail** einen
+  geeigneten Wert zu setzen: Die Befehle **bat**(1), **batcat**(1) und
+  **less**(1) werden geprüft, in dieser Reihenfolge.
+
 # RÜCKGABEWERT
 
 **0**
