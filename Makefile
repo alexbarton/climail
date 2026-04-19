@@ -60,11 +60,15 @@ maintainer-clean: distclean
 
 define CHECK_PROGRAM
 echo "Testing $(1) ..."; \
+bash -n ./$(1) || exit 1; \
 LANG=C ./$(1) --help | grep -Fq Usage: || { echo "$(1): Error on --help!"; exit 1; }; \
 LANG=C ./$(1) --invalid_arg 2>&1 >/dev/null | grep -Fq Usage: || { echo "$(1): error on --invalid_arg!"; exit 1; };
 endef
 
 check: all
+	@for p in $(LIBEXEC_FILES); do \
+	  echo "Checking $$p ..."; bash -n "$$p" || exit 1; \
+	 done
 	@for p in $(BIN_SCRIPTS); do \
 	  $(call CHECK_PROGRAM,$$p) \
 	 done
