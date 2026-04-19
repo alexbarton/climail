@@ -47,3 +47,9 @@ export MAILDIR="${MAILDIR:-/var/mail/${LOGNAME}}"
 export PAGER=${CLIMAIL_PAGER:-${PAGER:-more}}
 
 init_gettext
+
+if [[ "${EDITOR:-}" =~ (^|/)n?vim && ! "${EDITOR}" =~ \-c ]]; then
+	# Looks like EDITOR is set to a VIM variant and no -c option is given
+	# so far, let's set the file type!
+	export EDITOR="${EDITOR} -c 'set filetype=mail'"
+fi

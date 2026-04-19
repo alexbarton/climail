@@ -44,6 +44,13 @@ and used in the selector of the **readmail**(1) command, for example.
 **CLIMAIL_PAGER**
 : Overrides the "PAGER" before the mail reader is run.
 
+**EDITOR**
+: Often used by email clients when spawning a text editor to compose a new
+  email. When **openmail** detects *VIM* (or a derivate) in **EDITOR**, it
+  appends "-c \'set filetype=mail\'" to the **EDITOR** variable to enforce an
+  appropriate file type, even when the editor is run on a temporary file with
+  an arbitrary file name.
+
 **MAILDIR**
 : Overrides the default Maildir path (**/var/log/${LOGNAME}**).
 

@@ -46,6 +46,13 @@ Beispiel auch beim Start von **openmail** angezeigt und in der Auswahlliste von
 **CLIMAIL_PAGER**
 : Überschreibt den "PAGER" bevor der Mailreader gestartet wird.
 
+**EDITOR**
+: Oft von E-Mail-Programmen genutzt, um einen Text-Editor zum Erstellen einer
+  neuen E-Mail zu starten. Wenn **openmail** in **EDITOR** *VIM* (oder einen
+  Abkömmling) erkennt, hängt es "-c \'set filetype=mail\'" an die **EDITOR**
+  Variable an, um einen geeigneten Dateityp auch dann zu erzwingend, wenn der
+  Editor mit einer temporären Datei mit einem beliebigen Namen aufgerufen wird.
+
 **MAILDIR**
 : Überschreibt den Standardpfad zum Maildir (**/var/log/${LOGNAME}**).
 
